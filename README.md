@@ -3,6 +3,16 @@ Guild Wars 2 Wallpaper downloader, written in Go. This program is an improvement
 
 The program works by scraping links from the various pages with wallpapers, and then downloads the ones that match the specified dimensions.
 
+## How to build
+
+1. Install `go`
+2. Download or clone this repository.
+3. In the directory you have cloned or unzipped this code to, run `go build GW2WallsGo.go`.
+
+## How to use
+
+`GW2WallsGo` has these options:
+
 ```
 Usage of C:\Users\joshs\Projects\GW2WallsGo\GW2WallsGo.exe:
   -dimension string
