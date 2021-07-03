@@ -55,6 +55,11 @@ func (l *wallpaperLink) Download(path string) (string, error) {
 	}
 	defer resp.Body.Close()
 
+	// Check if file exists, and log warning if it does.
+	if _, err := os.Stat(dst); err == nil {
+		log.Warningf("Path %s already exists, overwriting.", dst)
+	}
+
 	// Make the output dir
 	os.MkdirAll(filepath.Dir(dst), 0666)
 
