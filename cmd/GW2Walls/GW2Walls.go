@@ -18,6 +18,7 @@ func main() {
 	verbose := flag.Bool("verbose", false, "Enable verbose logging.")
 	skipMedia := flag.Bool("skip-media", false, "Skip Media wallpapers.")
 	skipRelease := flag.Bool("skip-release", false, "Skip Release wallpapers.")
+	cores := flag.Int("cores", 8, "Number of simultaneous download threads to use.")
 	flag.Parse()
 	startedAt := time.Now()
 
@@ -36,7 +37,7 @@ func main() {
 
 	log.Infof("Dimensions: %s\nPath: %s\n", *dimensions, *outputPath)
 
-	links, scraper := gw2walls.FindWallpapers(*skipRelease, *skipMedia)
+	links, scraper := gw2walls.FindWallpapers(*skipRelease, *skipMedia, *cores)
 	downloader := gw2walls.DownloadWallpapers(*links, *outputPath, *dimensions)
 
 	log.Debugf("Waiting for scraper to finish...")

@@ -154,9 +154,9 @@ func (s *Scraper) getLinks(url string, links chan WallpaperLink) {
 	sc_log.Debugf("Finished processing %s", url)
 }
 
-func FindWallpapers(skipReleases, skipMedia bool) (*chan WallpaperLink, *Scraper) {
+func FindWallpapers(skipReleases, skipMedia bool, cores int) (*chan WallpaperLink, *Scraper) {
 	var s Scraper
-	links := make(chan WallpaperLink, 200)
+	links := make(chan WallpaperLink, cores)
 
 	if !skipReleases {
 		sc_log.Debugf("Calling getReleases")
