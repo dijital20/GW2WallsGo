@@ -41,10 +41,11 @@ func main() {
 
 	log.Debugf("Waiting for scraper to finish...")
 	scraper.Wait()
+	close(*links)
 
 	log.Debugf("Waiting for downloads to complete...")
 	downloader.Wait()
 
-	elapsed := time.Now().Sub(startedAt)
+	elapsed := time.Since(startedAt)
 	log.Infof("Finished in %s seconds.", elapsed)
 }
