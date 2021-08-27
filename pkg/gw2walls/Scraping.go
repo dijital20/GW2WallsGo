@@ -45,6 +45,7 @@ func (s *Scraper) getReleases(url string, links chan WallpaperLink) {
 	})
 
 	c.Visit(url)
+	sc_log.Debugf("Finished processing %s", url)
 }
 
 // Parses the specified page for its sweet, sweet wallpaper download links.
@@ -150,6 +151,7 @@ func (s *Scraper) getLinks(url string, links chan WallpaperLink) {
 	})
 
 	c.Visit(url)
+	sc_log.Debugf("Finished processing %s", url)
 }
 
 func FindWallpapers(skipReleases, skipMedia bool) (*chan WallpaperLink, *Scraper) {

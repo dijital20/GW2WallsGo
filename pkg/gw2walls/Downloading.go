@@ -27,6 +27,8 @@ func (p *Downloader) processLinks(links chan WallpaperLink, path string, dimensi
 			go p.downloadWallpaper(link, path)
 		}
 	}
+
+	dl_log.Debugf("Queue closed.")
 }
 
 func (p *Downloader) downloadWallpaper(link WallpaperLink, path string) {
