@@ -24,7 +24,7 @@ func (p *Downloader) processLinks(links chan WallpaperLink, path string, dimensi
 		}
 
 		if link.Dimension == dimensions {
-			go p.downloadWallpaper(link, path)
+			p.downloadWallpaper(link, path)
 		}
 	}
 
