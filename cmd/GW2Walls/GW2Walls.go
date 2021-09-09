@@ -12,6 +12,8 @@ import (
 )
 
 func main() {
+	startedAt := time.Now()
+
 	// CLI Parsing.
 	dimensions := flag.String("dimension", "1920x1080", "Dimensions of the wallpapers to download.")
 	outputPath := flag.String("output-path", "gw2_walls", "Path to download files to.")
@@ -20,11 +22,11 @@ func main() {
 	skipRelease := flag.Bool("skip-release", false, "Skip Release wallpapers.")
 	cores := flag.Int("cores", 8, "Number of simultaneous download threads to use.")
 	flag.Parse()
-	startedAt := time.Now()
+
+	*outputPath, _ = filepath.Abs(*outputPath)
 
 	log := loggo.GetLogger("gw2walls")
 
-	*outputPath, _ = filepath.Abs(*outputPath)
 	if *verbose {
 		log.SetLogLevel(loggo.DEBUG)
 		loggo.ReplaceDefaultWriter(loggocolor.NewWriter(os.Stdout))
@@ -37,8 +39,8 @@ func main() {
 
 	log.Infof("Dimensions: %s\nPath: %s\n", *dimensions, *outputPath)
 
-	links, scraper := gw2walls.FindWallpapers(*skipRelease, *skipMedia, *cores)
-	downloader := gw2walls.DownloadWallpapers(*links, *outputPath, *dimensions)
+	links, scraper := gw2walls.FindWallpapers(*skipRelease, *skipMedia)
+	downloader := gw2walls.DownloadWallpapers(*links, *outputPath, *dimensions, *cores)
 
 	log.Debugf("Waiting for scraper to finish...")
 	scraper.Wait()

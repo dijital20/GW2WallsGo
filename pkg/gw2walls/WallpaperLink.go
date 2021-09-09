@@ -11,6 +11,10 @@ import (
 	"github.com/juju/loggo"
 )
 
+var wl_log = loggo.GetLogger("gw2walls.wallpaperlink")
+
+// WallpaperLink represents a found wallpaper link. It contains the URL to the file, the Release it came from,
+// Dimensions of it, Date it was released, and index Number.
 type WallpaperLink struct {
 	URL       string
 	Release   string
@@ -18,8 +22,6 @@ type WallpaperLink struct {
 	Date      string
 	Number    int
 }
-
-var wl_log = loggo.GetLogger("gw2walls.wallpaperlink")
 
 // Download the wallpaper to the local machine.
 func (l *WallpaperLink) Download(path string) (string, error) {
@@ -58,7 +60,7 @@ func (l *WallpaperLink) Download(path string) (string, error) {
 
 // Get a nice string representation of the release name and date that is filename friendly.
 func (l *WallpaperLink) String() string {
-	fixer, _ := regexp.Compile("[^\\w\\s\\-]")
+	fixer, _ := regexp.Compile(`[^\w\s\-]`)
 	var name string
 	if l.Date == "" {
 		name = fmt.Sprintf("%s %d %s", l.Release, l.Number, l.Dimension)

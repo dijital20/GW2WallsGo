@@ -18,6 +18,7 @@ const (
 
 var sc_log = loggo.GetLogger("gw2walls.scraping")
 
+// Scraper type contains a WaitGroup. Can call Wait to see when it is done.
 type Scraper struct {
 	sync.WaitGroup
 }
@@ -154,9 +155,12 @@ func (s *Scraper) getLinks(url string, links chan WallpaperLink) {
 	sc_log.Debugf("Finished processing %s", url)
 }
 
-func FindWallpapers(skipReleases, skipMedia bool, cores int) (*chan WallpaperLink, *Scraper) {
+// Starts the process of finding wallpapers. If skipReleases, skips the "release" wallpapers, and if shipMedia, skips
+// the "media" wallpapers. Returns a pointer to a channel that will be filled with found WallpaperLink objects, and a
+// pointer to the scraper instance, which we can use to tell when the scraping is done.
+func FindWallpapers(skipReleases, skipMedia bool) (*chan WallpaperLink, *Scraper) {
 	var s Scraper
-	links := make(chan WallpaperLink, cores)
+	links := make(chan WallpaperLink, 200)
 
 	if !skipReleases {
 		sc_log.Debugf("Calling getReleases")
