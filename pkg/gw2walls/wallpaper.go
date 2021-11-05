@@ -11,7 +11,7 @@ import (
 	"github.com/juju/loggo"
 )
 
-var wl_log = loggo.GetLogger("gw2walls.wallpaperlink")
+var wl_log = loggo.GetLogger("gw2walls.wallpaper")
 
 // WallpaperLink represents a found wallpaper link. It contains the URL to the file, the Release it came from,
 // Dimensions of it, Date it was released, and index Number.

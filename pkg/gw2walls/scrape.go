@@ -16,7 +16,7 @@ const (
 	mainSiteURL = "https://www.guildwars2.com"
 )
 
-var sc_log = loggo.GetLogger("gw2walls.scraping")
+var sc_log = loggo.GetLogger("gw2walls.scrape")
 
 // Scraper type contains a WaitGroup. Can call Wait to see when it is done.
 type Scraper struct {

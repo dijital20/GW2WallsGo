@@ -7,7 +7,7 @@ import (
 	"github.com/juju/loggo"
 )
 
-var dl_log = loggo.GetLogger("gw2walls.downloading")
+var dl_log = loggo.GetLogger("gw2walls.download")
 
 type semaphore chan string
 
