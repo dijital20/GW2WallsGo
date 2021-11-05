@@ -26,6 +26,7 @@ func main() {
 	*outputPath, _ = filepath.Abs(*outputPath)
 
 	log := loggo.GetLogger("gw2walls")
+	loggo.ReplaceDefaultWriter(loggocolor.NewWriter(os.Stderr))
 
 	if *verbose {
 		log.SetLogLevel(loggo.DEBUG)
