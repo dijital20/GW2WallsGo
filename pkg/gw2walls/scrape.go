@@ -82,7 +82,7 @@ func (s *Scraper) getLinks(url string, links chan WallpaperLink) {
 			break
 		}
 
-		sc_log.Debugf("Set name and date:", name, releaseDate)
+		sc_log.Debugf("Set name and date: %s %s", name, releaseDate)
 	})
 
 	// Media URLs
@@ -92,7 +92,7 @@ func (s *Scraper) getLinks(url string, links chan WallpaperLink) {
 		item.ForEach("img", func(_ int, imgItem *colly.HTMLElement) {
 			src := strings.Split(item.Attr("src"), "/")
 			name = strings.Replace(src[len(src)-1], "-crop.jpg", "", 1)
-			sc_log.Debugf("Set name to:", name)
+			sc_log.Debugf("Set name to: %s", name)
 		})
 
 		item.ForEach("a", func(_ int, sizeItem *colly.HTMLElement) {
