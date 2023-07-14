@@ -43,6 +43,8 @@ func main() {
 	links, scraper := gw2walls.FindWallpapers(*skipRelease, *skipMedia)
 	downloader := gw2walls.DownloadWallpapers(*links, *outputPath, *dimensions, *cores)
 
+	time.Sleep(time.Second)
+
 	log.Debugf("Waiting for scraper to finish...")
 	scraper.Wait()
 	close(*links)
