@@ -13,3 +13,6 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Default download directory. Please don't commit the wallpaper binaries...
+gw2_walls/
