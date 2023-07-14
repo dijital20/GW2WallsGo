@@ -44,7 +44,7 @@ func (l *WallpaperLink) Download(path string) (string, error) {
 	}
 
 	// Make the output dir
-	os.MkdirAll(filepath.Dir(dst), 0666)
+	os.MkdirAll(filepath.Dir(dst), 0777)
 
 	// Open the local file.
 	out, err := os.Create(dst)
